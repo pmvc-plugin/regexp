@@ -1,0 +1,18 @@
+{
+    "name": "pmvc-plugin/regexp",
+    "description": "Regular Expression Tool",
+    "type": "library",
+    "keywords": ["regexp", "pmvc", "plug-in"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hill",
+            "email": "hill@kimo.com"
+        }
+    ],
+    "require": {
+        "pmvc/pmvc": "*",
+        "selvinortiz/flux": "*"
+    },
+    "minimum-stability": "dev"
+}
