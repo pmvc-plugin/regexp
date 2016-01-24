@@ -7,6 +7,11 @@
 regexp
 ===============
 
+## Wrapper
+This plugin is wrapping for Fluent Regular Expressions for PHP
+https://github.com/selvinortiz/flux/
+
+
 ## Install with Composer
 ### 1. Download composer
    * mkdir test_folder
