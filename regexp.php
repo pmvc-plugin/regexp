@@ -22,4 +22,18 @@ class regexp extends \PMVC\PlugIn
        }
        return (string)$o;
     }
+
+    public function checkCommand(...$params)
+    {
+       $o = Flux::getInstance(); 
+       $fail = array();
+       foreach($params as $v){
+           $funcName = array_shift($v);
+           $func = array($o,$funcName);
+           if (!is_callable($func)) {
+                $fail[] = $funcName;
+           }
+        }
+        return $fail;
+    }
 }
