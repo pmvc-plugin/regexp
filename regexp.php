@@ -1,6 +1,7 @@
 <?php
 namespace PMVC\PlugIn\regexp;
 use SelvinOrtiz\Utils\Flux\Flux;
+use ReflectionMethod;
 
 // \PMVC\l(__DIR__.'/xxx.php');
 
@@ -27,11 +28,31 @@ class regexp extends \PMVC\PlugIn
     {
        $o = Flux::getInstance(); 
        $fail = array();
+       if (!is_array($params)) {
+            $fail[]=$params;
+            return $fail;
+       }
        foreach($params as $v){
+           if (!is_array($v)) {
+                $fail[] = $v;
+                continue;
+           }
            $funcName = array_shift($v);
            $func = array($o,$funcName);
            if (!is_callable($func)) {
-                $fail[] = $funcName;
+               $fail[] = $funcName;
+           } else {
+               $reflection = new ReflectionMethod($o, $funcName);
+               $parameters = $reflection->getParameters();
+               $params = array();
+               foreach($parameters as $p){
+                   if (!$p->isdefaultvalueavailable()) {
+                        $params[] =$p;
+                   }
+               }
+               if ( count($params) > count($v) ) {
+                    $fail[] = array($funcName,$v);
+               }
            }
         }
         return $fail;
