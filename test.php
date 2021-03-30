@@ -1,6 +1,6 @@
 <?php
-PMVC\Load::plug();
-PMVC\addPlugInFolder('../');
+\PMVC\Load::plug();
+\PMVC\addPlugInFolders([__DIR__.'/../']);
 class ReTest extends PHPUnit_Framework_TestCase
 {
     private $_plug = 'regexp';
